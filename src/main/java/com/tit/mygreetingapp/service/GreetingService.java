@@ -42,6 +42,17 @@ public class GreetingService {
         return null;
     }
 
+    public Map<String, String> deleteGreetingById(Long id) {
+        Map<String, String> response = new HashMap<>();
+        if (greetingRepository.existsById(id)) {
+            greetingRepository.deleteById(id);
+            response.put("message", "Greeting deleted successfully.");
+        } else {
+            response.put("message", "Greeting not found.");
+        }
+        return response;
+    }
+
     public Map<String, String> getGreeting(Map<String, String> request) {
         Map<String, String> response = new HashMap<>();
         String firstName = request.getOrDefault("firstName", "").trim();

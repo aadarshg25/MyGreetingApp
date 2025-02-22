@@ -48,20 +48,8 @@ public class GreetingController {
         return greetingService.updateGreetingById(id, request.get("message"));
     }
 
-    @PostMapping("/post")
-    public Map<String, String> createGreeting(@RequestBody Map<String, String> request) {
-        return greetingService.getGreeting(request);
-    }
-
-    @PutMapping("/put")
-    public Map<String, String> updateGreeting(@RequestBody Map<String, String> request) {
-        return greetingService.getGreeting(request);
-    }
-
-    @DeleteMapping("/delete")
-    public Map<String, String> deleteGreeting() {
-        Map<String, String> response = new HashMap<>();
-        response.put("message", "DELETE request received.");
-        return response;
+    @DeleteMapping("/delete/{id}")
+    public Map<String, String> deleteGreetingById(@PathVariable Long id) {
+        return greetingService.deleteGreetingById(id);
     }
 }
