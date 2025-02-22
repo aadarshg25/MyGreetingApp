@@ -43,6 +43,11 @@ public class GreetingController {
         return greetingService.getAllGreetings();
     }
 
+    @PutMapping("/update/{id}")
+    public Greeting updateGreetingById(@PathVariable Long id, @RequestBody Map<String, String> request) {
+        return greetingService.updateGreetingById(id, request.get("message"));
+    }
+
     @PostMapping("/post")
     public Map<String, String> createGreeting(@RequestBody Map<String, String> request) {
         return greetingService.getGreeting(request);
