@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class GreetingService {
@@ -19,7 +20,11 @@ public class GreetingService {
 
     public Greeting saveGreeting(String message) {
         Greeting greeting = new Greeting(message);
-        return greetingRepository.save(greeting); // ✅ No more error!
+        return greetingRepository.save(greeting);
+    }
+
+    public Greeting findGreetingById(Long id) {
+        return greetingRepository.findById(id).orElse(null);
     }
 
     public Map<String, String> getGreeting(Map<String, String> request) {
@@ -42,3 +47,4 @@ public class GreetingService {
         return response;
     }
 }
+
