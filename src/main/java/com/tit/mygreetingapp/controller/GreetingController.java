@@ -5,6 +5,7 @@ import com.tit.mygreetingapp.service.GreetingService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -37,6 +38,11 @@ public class GreetingController {
         return greetingService.findGreetingById(id);
     }
 
+    @GetMapping("/list")
+    public List<Greeting> getAllGreetings() {
+        return greetingService.getAllGreetings();
+    }
+
     @PostMapping("/post")
     public Map<String, String> createGreeting(@RequestBody Map<String, String> request) {
         return greetingService.getGreeting(request);
@@ -54,6 +60,3 @@ public class GreetingController {
         return response;
     }
 }
-
-
-
